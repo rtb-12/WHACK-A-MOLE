@@ -18,6 +18,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  padding: 20px;
 }
 
 h1 {
@@ -39,7 +40,7 @@ h1 {
   font-size: 2rem;
   padding: 1rem 2rem;
   margin: 1rem 0;
-  background-color: #ff5733;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -48,21 +49,20 @@ h1 {
 }
 
 .start-button:hover {
-  background-color: #c70039;
+  background-color: #45a049;
 }
 
 .game {
   width: 100%;
   max-width: 600px;
-  height: auto;
-  aspect-ratio: 3 / 2;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   margin: 0 auto;
 }
 
 .hole {
-  flex: 1 0 33.33%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   position: relative;
 }
@@ -70,7 +70,7 @@ h1 {
 .hole:after {
   display: block;
   background: url(dirt.svg) bottom center no-repeat;
-  background-size: contain;
+  background-size: 100% auto;
   content: "";
   width: 100%;
   height: 70px;
@@ -81,21 +81,21 @@ h1 {
 
 .mole {
   background: url("mole.svg") bottom center no-repeat;
-  background-size: 60%;
+  background-size: 80% auto;
   position: absolute;
   top: 100%;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 30px);
   transition: all 0.4s;
 }
 
 .hole.up .mole {
-  top: 0;
+  top: -30px;
 }
 
 .hammer {
   background: url("hammer.png") bottom center no-repeat;
-  background-size: 100%;
+  background-size: 100% auto;
   position: absolute;
   top: 100%;
   width: 100%;
@@ -126,26 +126,58 @@ h1 {
   }
 
   .game {
-    width: 90%;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 400px;
   }
 
   .start-button {
     font-size: 1.8rem;
     padding: 0.8rem 1.6rem;
   }
+
+  .hole:after {
+    height: 50px;
+    bottom: -20px;
+  }
+
+  .mole {
+    background-size: 90% auto;
+    height: calc(100% + 20px);
+  }
+
+  .hole.up .mole {
+    top: -20px;
+  }
 }
 
 @media (max-width: 400px) {
   html {
-    font-size: 6px;
+    font-size: 7px;
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
+  }
+
+  .game {
+    max-width: 300px;
   }
 
   .start-button {
     font-size: 1.6rem;
     padding: 0.6rem 1.2rem;
+  }
+
+  .hole:after {
+    height: 40px;
+    bottom: -15px;
+  }
+
+  .mole {
+    height: calc(100% + 15px);
+  }
+
+  .hole.up .mole {
+    top: -15px;
   }
 }
